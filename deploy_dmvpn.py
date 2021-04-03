@@ -29,6 +29,7 @@ nr.inventory.defaults.password = os.getenv("PASSWORD")
 def load_vars(task):
     """
     Load host variables and bind them to a per-host dict key called "facts"
+    Load group variables and bind them to a dict key called "group_facts"
     """
 
     data = task.run(
