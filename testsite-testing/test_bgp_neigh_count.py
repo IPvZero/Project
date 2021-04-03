@@ -88,5 +88,5 @@ class TestDMVPNBGPNeighbors:
                 neighbor_id = neighbor["id"]
                 neighbor_list.append(neighbor_id)
         num_neighbors = len(neighbor_list)
-        expected_neighbors = TestBGPNeighbors.NEIGHBOR_COUNT[dmvpn_role]
+        expected_neighbors = TestDMVPNBGPNeighbors.NEIGHBOR_COUNT[dmvpn_role]
         assert num_neighbors == expected_neighbors, f"{nr_host} FAILED"
