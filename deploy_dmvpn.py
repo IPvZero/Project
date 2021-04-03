@@ -3,6 +3,7 @@ AUTHOR: John McGovern (IPvZero)
       
 """
 import os
+import sys
 from nornir import InitNornir
 from nornir.core.exceptions import NornirExecutionError
 from nornir.core.filter import F
@@ -18,7 +19,8 @@ from nornir_scrapli.tasks import (
     netconf_validate,
 )
 
-nr = InitNornir(config_file="config.yaml")
+config_file = sys.argv[1]
+nr = InitNornir(config_file=config_file)
 
 nr.inventory.defaults.username = os.getenv("USERNAME")
 nr.inventory.defaults.password = os.getenv("PASSWORD")
