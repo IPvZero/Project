@@ -1,0 +1,12 @@
+---
+dmvpn:
+    type: Hub
+    source:
+        int: G2
+
+vrf:
+    peer_ip: 201.0.0.2
+
+bgp:
+    peer_group: SPOKES
+    redistributing: "True"
