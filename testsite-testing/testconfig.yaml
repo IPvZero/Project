@@ -1,0 +1,17 @@
+---
+
+inventory:
+    plugin: SimpleInventory
+    options:
+        #CHANGE THESE PATHS
+        host_file: "/home/ipvzero/CodeSamples/ADV-NET/Automating-DMVPN/testhosts.yaml"
+        group_file: "/home/ipvzero/CodeSamples/ADV-NET/Automating-DMVPN/groups.yaml"
+        defaults_file: "/home/ipvzero/CodeSamples/ADV-NET/Automating-DMVPN/defaults.yaml"
+
+runners:
+    plugin: threaded
+    options:
+        num_workers: 10
+
+logging:
+  enabled: False
