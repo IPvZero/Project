@@ -1,0 +1,73 @@
+<config>
+	<native
+		xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+		<router operation="replace">
+			<bgp
+				xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp">
+				<id>{{ host.group_facts.bgp.as }}</id>
+				<bgp>
+					<listen>
+						<range>
+							<network-range>{{ host.group_facts.dmvpn.tunnel_range }}</network-range>
+							<peer-group>{{ host.facts.bgp.peer_group }}</peer-group>
+						</range>
+					</listen>
+					<log-neighbor-changes>true</log-neighbor-changes>
+				</bgp>
+				<peer-group>
+					<neighbor>
+						<id>{{ host.facts.bgp.peer_group }}</id>
+						<peer-group/>
+						<remote-as>{{ host.group_facts.bgp.as }}</remote-as>
+						<update-source>
+							<Tunnel>0</Tunnel>
+						</update-source>
+					</neighbor>
+				</peer-group>
+				<address-family>
+					<no-vrf>
+						<ipv4>
+							<af-name>unicast</af-name>
+							<ipv4-unicast>
+								<peer-group>
+									<neighbor>
+										<id>{{ host.facts.bgp.peer_group }}</id>
+										<activate/>
+										<default-originate/>
+										<next-hop-self>
+											<all/>
+										</next-hop-self>
+										<route-reflector-client/>
+									</neighbor>
+								</peer-group>
+{% if host.facts.bgp.networks is defined %}
+                  
+								<network>
+{% for network in host.facts.bgp.networks %}
+                    
+									<with-mask>
+										<number>network["net"]</number>
+										<mask>network["mask"]</mask>
+									</with-mask>
+{% endfor %}
+                  
+								</network>
+{% endif %}
+
+{% if host.facts.bgp.redistributing == "True" %}
+                  
+								<redistribute>
+									<ospf>
+										<id>1</id>
+									</ospf>
+								</redistribute>
+{% endif %}
+                
+							</ipv4-unicast>
+						</ipv4>
+					</no-vrf>
+				</address-family>
+			</bgp>
+		</router>
+	</native>
+</config>
