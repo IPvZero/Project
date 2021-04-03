@@ -1,0 +1,21 @@
+---
+dmvpn:
+    tunnel_ip: 172.16.1.4
+    tunnel_mask: 255.255.255.0
+    type: Spoke
+    source:
+        int: G2
+        ip: 204.0.0.1 255.255.255.252
+    hub:
+        tunnel_ip: 172.16.1.1
+
+vrf:
+    peer_ip: 204.0.0.2
+
+bgp:
+    neighbors:
+        - peer_id: 172.16.1.1
+          asn: "65001"
+          tunnel_peer: "True"
+
+    redistributing: "True"
