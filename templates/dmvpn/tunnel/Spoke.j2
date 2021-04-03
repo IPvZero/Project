@@ -1,0 +1,120 @@
+<config>
+	<native
+		xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+		<crypto>
+			<ipsec operation="replace"
+				xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+				<transform-set>
+					<tag>{{ host.group_facts.dmvpn.ipsec.name }}</tag>
+					<esp>esp-3des</esp>
+					<esp-hmac>esp-md5-hmac</esp-hmac>
+					<mode>
+						<transport/>
+					</mode>
+				</transform-set>
+				<profile>
+					<name>{{ host.group_facts.dmvpn.ipsec.name }}</name>
+					<set>
+						<isakmp-profile>{{ host.group_facts.dmvpn.ipsec.name }}</isakmp-profile>
+						<transform-set>{{ host.group_facts.dmvpn.ipsec.name }}</transform-set>
+					</set>
+				</profile>
+			</ipsec>
+			<keyring operation="replace"
+				xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+				<name>{{ host.group_facts.dmvpn.ipsec.name }}</name>
+				<vrf>FRONTDOOR</vrf>
+				<pre-shared-key>
+					<address>
+						<ipv4>
+							<ipv4-addr>0.0.0.0</ipv4-addr>
+							<mask>0.0.0.0</mask>
+							<key/>
+							<unencryt-key>{{ host.group_facts.dmvpn.ipsec.key }}</unencryt-key>
+						</ipv4>
+					</address>
+				</pre-shared-key>
+			</keyring>
+			<isakmp operation="replace"
+				xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+				<policy>
+					<number>10</number>
+					<authentication>pre-share</authentication>
+					<encryption>
+						<a3des/>
+					</encryption>
+					<hash>md5</hash>
+				</policy>
+				<profile>
+					<name>{{ host.group_facts.dmvpn.ipsec.name }}</name>
+					<keyring>
+						<name>{{ host.group_facts.dmvpn.ipsec.name }}</name>
+					</keyring>
+					<match>
+						<identity>
+							<address>
+								<ip>0.0.0.0</ip>
+								<mask>0.0.0.0</mask>
+								<vrf>FRONTDOOR</vrf>
+							</address>
+						</identity>
+					</match>
+				</profile>
+			</isakmp>
+		</crypto>
+		<interface>
+			<Tunnel>
+				<name>0</name>
+				<ip>
+					<address>
+						<primary>
+							<address>{{ host.facts.dmvpn.tunnel_ip }}</address>
+							<mask>{{ host.facts.dmvpn.tunnel_mask }}</mask>
+						</primary>
+					</address>
+					<redirects>false</redirects>
+					<tcp>
+						<adjust-mss>1360</adjust-mss>
+					</tcp>
+					<mtu>1400</mtu>
+					<nhrp
+						xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-nhrp">
+						<authentication>{{ host.group_facts.dmvpn.authentication }}</authentication>
+						<holdtime>{{ host.group_facts.dmvpn.holdtime }}</holdtime>
+						<map>
+							<dest-ipv4>
+								<dest-ipv4>{{ host.group_facts.dmvpn.hub.tunnel_ip }}</dest-ipv4>
+								<nbma-ipv4>
+									<nbma-ipv4>{{ host.group_facts.dmvpn.hub.global_ip }}</nbma-ipv4>
+								</nbma-ipv4>
+							</dest-ipv4>
+						</map>
+						<network-id>{{ host.group_facts.dmvpn.net_id }}</network-id>
+						<nhs>
+							<ipv4>
+								<ipv4>{{ host.group_facts.dmvpn.hub.tunnel_ip }}</ipv4>
+							</ipv4>
+						</nhs>
+					</nhrp>
+				</ip>
+				<tunnel
+					xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-tunnel">
+					<source>{{ host.facts.dmvpn.source.int }}</source>
+					<key>{{ host.group_facts.dmvpn.tunnel_key }}</key>
+					<mode>
+						<gre>
+							<multipoint/>
+						</gre>
+					</mode>
+					<protection>
+						<ipsec
+							xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-crypto">
+							<profile>{{ host.group_facts.dmvpn.ipsec.name }}</profile>
+						</ipsec>
+					</protection>
+					<vrf>FRONTDOOR</vrf>
+				</tunnel>
+			</Tunnel>
+		</interface>
+	</native>
+</config>
