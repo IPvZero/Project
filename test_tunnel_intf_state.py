@@ -41,7 +41,7 @@ def get_hub_spoke_dev_names():
     return devices
 
 
-class TestTunnel:
+class TestDMVPNTunnel:
     """
     Class to test Tunnel Status
     """
