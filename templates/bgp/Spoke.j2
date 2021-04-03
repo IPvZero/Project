@@ -1,0 +1,53 @@
+ 
+<config>
+	<native
+		xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+		<router operation="replace">
+			<bgp
+				xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-bgp">
+				<id>{{ host.group_facts.bgp.as }}</id>
+				<bgp>
+					<log-neighbor-changes>true</log-neighbor-changes>
+				</bgp>
+{% for neighbor in host.facts.bgp.neighbors %}
+      
+				<neighbor>
+					<id>{{ neighbor["peer_id"] }}</id>
+					<remote-as>{{ neighbor["asn"] }}</remote-as>
+{% if neighbor["tunnel_peer"] == "True" %}
+         
+					<update-source>
+						<Tunnel>0</Tunnel>
+					</update-source>
+{% endif %}
+      
+				</neighbor>
+{% endfor %}
+      
+				<address-family>
+					<no-vrf>
+						<ipv4>
+							<af-name>unicast</af-name>
+							<ipv4-unicast>
+{% for neighbor in host.facts.bgp.neighbors %}
+              
+								<neighbor>
+									<id>{{ neighbor["peer_id"] }}</id>
+									<activate/>
+								</neighbor>
+{% endfor %}
+{% if host.facts.bgp.redistributing == "True" %}
+              
+								<redistribute>
+									<connected/>
+								</redistribute>
+{% endif %}
+            
+							</ipv4-unicast>
+						</ipv4>
+					</no-vrf>
+				</address-family>
+			</bgp>
+		</router>
+	</native>
+</config>
