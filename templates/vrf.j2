@@ -1,0 +1,50 @@
+<config>
+	<native
+		xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+		<vrf operation="replace">
+			<definition>
+				<name>FRONTDOOR</name>
+				<address-family>
+					<ipv4/>
+				</address-family>
+			</definition>
+			<definition>
+				<name>MGMT</name>
+				<address-family>
+					<ipv4/>
+				</address-family>
+			</definition>
+		</vrf>
+		<ip>
+			<route>
+				<ip-route-interface-forwarding-list>
+					<prefix>0.0.0.0</prefix>
+					<mask>0.0.0.0</mask>
+					<fwd-list>
+						<fwd>{{ host.facts.dmvpn.source.int }}</fwd>
+					</fwd-list>
+				</ip-route-interface-forwarding-list>
+				<vrf>
+					<name>FRONTDOOR</name>
+					<ip-route-interface-forwarding-list>
+						<prefix>0.0.0.0</prefix>
+						<mask>0.0.0.0</mask>
+						<fwd-list>
+							<fwd>{{ host.facts.vrf.peer_ip }}</fwd>
+						</fwd-list>
+					</ip-route-interface-forwarding-list>
+				</vrf>
+				<vrf>
+					<name>MGMT</name>
+					<ip-route-interface-forwarding-list>
+						<prefix>0.0.0.0</prefix>
+						<mask>0.0.0.0</mask>
+						<fwd-list>
+							<fwd>10.188.188.1</fwd>
+						</fwd-list>
+					</ip-route-interface-forwarding-list>
+				</vrf>
+			</route>
+		</ip>
+	</native>
+</config>
