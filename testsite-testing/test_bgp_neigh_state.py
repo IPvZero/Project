@@ -19,7 +19,7 @@ headers = {
 }
 
 
-def get_bgp_neighbor_count(task):
+def get_bgp_neighbor_state(task):
     """
     Retrieve BGP State Data
     """
@@ -54,13 +54,13 @@ class TestDMVPNBGPNeighbors:
         pytestnr.inventory.defaults.username = os.getenv("USERNAME")
         pytestnr.inventory.defaults.password = os.getenv("PASSWORD")
         pytestnr_filtered = pytestnr.filter(F(dmvpn="Hub") | F(dmvpn="Spoke"))
-        pytestnr_filtered.run(task=get_bgp_neighbor_count)
+        pytestnr_filtered.run(task=get_bgp_neighbor_state)
         yield
         for host in pytestnr_filtered.inventory.hosts.values():
             host.data.pop("bgp_facts")
 
     @pytest.mark.parametrize("device_name", get_hub_spoke_dev_names())
-    def test_bgp_neighbor_count(self, pytestnr, device_name):
+    def test_bgp_neighbor_state(self, pytestnr, device_name):
         """
         Parse BGP neighbor State
         Test State is Established
