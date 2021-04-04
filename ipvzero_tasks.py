@@ -67,7 +67,7 @@ def replace_vlan(task):
     pattern = re.compile("!\n!", flags=re.I | re.M)
     newchar = "`"
     newconfig = re.sub(pattern, newchar, showrun)
-    vrfpattern = re.compile("vlan[^`]+", flags=re.I | re.M)
+    vlanpattern = re.compile("vlan[^`]+", flags=re.I | re.M)
     load_template = task.run(
         task=template_file,
         name="Buildling Routing Configuration",
@@ -75,9 +75,9 @@ def replace_vlan(task):
         path="./templates",
         severity_level=logging.DEBUG,
     )
-    vrf_template = load_template.result
-    vrf_config = re.sub(vrfpattern, vrf_template, newconfig)
-    configuration = vrf_config.replace("`", "!")
+    vlan_template = load_template.result
+    vlan_config = re.sub(vlanpattern, vlan_template, newconfig)
+    configuration = vlan_config.replace("`", "!")
     final_config = configuration.replace("^C", etx)
     return final_config
 
