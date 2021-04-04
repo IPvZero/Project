@@ -1,0 +1,6 @@
+{% if host.facts.VLANS is defined %}
+{% for vlan in host.facts.VLANS %}
+vlan {{ vlan["id"] }}
+ name {{ vlan["name"] }}
+{% endfor %}
+{% endif %}
