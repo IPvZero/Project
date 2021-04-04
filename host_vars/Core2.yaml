@@ -1,0 +1,6 @@
+VLANS:
+  - id: 5
+    name: "FIVE"
+
+  - id: 10
+    name: "TEN"
