@@ -1,0 +1,73 @@
+---
+
+Hub:
+    hostname: 10.188.188.101
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        dmvpn: Hub
+
+Spoke1:
+    hostname: 10.188.188.102
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        dmvpn: Spoke
+
+Spoke2:
+    hostname: 10.188.188.103
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        dmvpn: Spoke
+
+Spoke3:
+    hostname: 10.188.188.104
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        dmvpn: Spoke
+
+Spoke4:
+    hostname: 10.188.188.105
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        dmvpn: Spoke
+
+Spoke5:
+    hostname: 10.188.188.106
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        dmvpn: Spoke
+
+Spoke6:
+    hostname: 10.188.188.107
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        dmvpn: Spoke
+
+Core1:
+    hostname: 10.188.188.108
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        site: central
+
+Core2:
+    hostname: 10.188.188.109
+    groups:
+        - cisco_group
+    data:
+        domain: ipvzero
+        site: central
