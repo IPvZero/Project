@@ -2,5 +2,5 @@ VLANS:
   - id: 5
     name: "FIVE"
 
-  - id: 47
-    name: "FORTYSEVEN"
+  - id: 54
+    name: "RED"
