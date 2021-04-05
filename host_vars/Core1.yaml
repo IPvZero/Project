@@ -4,3 +4,6 @@ VLANS:
 
   - id: 10
     name: "TEN"
+
+  - id: 23
+    name: "TWENTYTHREE"
