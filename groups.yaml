@@ -9,7 +9,7 @@ cisco_group:
     napalm:
       extras:
         optional_args:
-          port: 443
+          port: 22
           global_delay_factor: 5
     scrapli:
         extras:
