@@ -5,5 +5,5 @@ VLANS:
   - id: 10
     name: "TEN"
 
-  - id: 23
-    name: "TWENTYTHREE"
+  - id: 24
+    name: "TWENTYFOUR"
