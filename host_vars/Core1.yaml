@@ -7,3 +7,8 @@ VLANS:
 
   - id: 23
     name: "TWENTYTHREE"
+   
+NTP:
+  - server: 1.1.1.1
+
+  - server: 2.2.2.2
