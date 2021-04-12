@@ -52,7 +52,7 @@ def get_hub_spoke_dev_names():
 
 class TestNTPServersDMVPN:
     """
-    Class to test Tunnel Status
+    Class to test NTP Status
     """
 
     @pytest.fixture(scope="class", autouse=True)
