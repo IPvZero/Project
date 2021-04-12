@@ -1,0 +1,15 @@
+{% if host.facts.NTP is defined %}
+  <config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+      <ntp operation="replace">
+        <server xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-ntp">
+{% for ntp in host.facts.NTP %}
+          <server-list>
+            <ip-address>{{ ntp["server"] }}</ip-address>
+          </server-list>
+{% endfor %}
+        </server>
+      </ntp>
+    </native>
+  </config>
+{% endif %}
