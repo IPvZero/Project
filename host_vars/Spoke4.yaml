@@ -19,3 +19,8 @@ bgp:
           tunnel_peer: "True"
 
     redistributing: "True"
+    
+NTP:
+  - server: 1.1.1.1
+
+  - server: 2.2.2.2
