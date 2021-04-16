@@ -8,7 +8,7 @@ from nornir.core.filter import F
 from nornir_scrapli.tasks import send_command
 from nornir_utils.plugins.tasks.data import load_yaml
 
-nr = InitNornir(config_file=testconfig.yaml")
+nr = InitNornir(config_file="testconfig.yaml")
 
 nr.inventory.defaults.username = os.getenv("USERNAME")
 nr.inventory.defaults.password = os.getenv("PASSWORD")
