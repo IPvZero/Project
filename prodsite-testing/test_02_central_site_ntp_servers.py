@@ -8,7 +8,8 @@ from nornir.core.filter import F
 from nornir_scrapli.tasks import send_command
 from nornir_utils.plugins.tasks.data import load_yaml
 
-nr = InitNornir(config_file="prodconfig.yaml")
+nr = InitNornir(config_file="testconfig.yaml")
+
 nr.inventory.defaults.username = os.getenv("USERNAME")
 nr.inventory.defaults.password = os.getenv("PASSWORD")
 
@@ -26,7 +27,7 @@ def load_vars(task):
     Load Desired State
     """
     result = task.run(
-        task=load_yaml, file=f"/home/ipvzero/Project/host_vars/{task.host}.yaml"
+        task=load_yaml, file=f"../host_vars/{task.host}.yaml"
     )
     task.host["loaded_vars"] = result.result
 
@@ -71,4 +72,5 @@ class TestNTPServers:
         ntp_servers = nr_host["ntp_data"]["vrf"]["default"]["address"]
         for server in ntp_servers:
             ntp_list.append(server)
-        assert expected_list == ntp_list, f"{nr_host} FAILED"
+        sorted_ntp_list = sorted(ntp_list)
+        assert expected_list == sorted_ntp_list, f"{nr_host} FAILED"
