@@ -2,10 +2,8 @@ VLANS:
   - id: 5
     name: "FIVE"
 
-  - id: 54
-    name: "RED"
-  - id: 922
-    name: "NINETWOTWO"
+  - id: 10
+    name: "TEN"
 
 NTP:
   - server: 1.1.1.1
