@@ -1,6 +1,6 @@
 ---
 dmvpn:
-    tunnel_ip: 172.16.1.6
+    tunnel_ip: 172.211.1.6
     tunnel_mask: 255.255.255.0
     type: Spoke
     source:
