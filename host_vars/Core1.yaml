@@ -5,10 +5,9 @@ VLANS:
   - id: 10
     name: "TEN"
 
-<<<<<<< HEAD
   - id: 24
     name: "TWENTYFOUR"
-=======
+
   - id: 23
     name: "TWENTYTHREE"
    
@@ -16,4 +15,3 @@ NTP:
   - server: 1.1.1.1
 
   - server: 2.2.2.2
->>>>>>> main
