@@ -3,7 +3,8 @@
 inventory:
     plugin: SimpleInventory
     options:
-        host_file: "../testhosts.yaml"
+    #CHANGE THESE TO ABSOLUTE PATHS
+        host_file: "../prodhosts.yaml"
         group_file: "../groups.yaml"
         defaults_file: "../defaults.yaml"
 

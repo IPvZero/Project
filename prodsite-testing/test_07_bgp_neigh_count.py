@@ -8,7 +8,7 @@ from nornir import InitNornir
 from nornir.core.filter import F
 
 
-nr = InitNornir(config_file="testconfig.yaml")
+nr = InitNornir(config_file="prodconfig.yaml")
 
 
 nr.inventory.defaults.username = os.getenv("USERNAME")
@@ -46,7 +46,7 @@ class TestDMVPNBGPNeighbors:
     Class to test BGP
     """
 
-    NEIGHBOR_COUNT = {"Hub": 3, "Spoke": 1}
+    NEIGHBOR_COUNT = {"Hub": 6, "Spoke": 1}
 
     @pytest.fixture(scope="class", autouse=True)
     def setup_teardown(self, pytestnr):

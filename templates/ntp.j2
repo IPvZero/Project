@@ -1,0 +1,5 @@
+{% if host.facts.NTP is defined %}
+{% for ntp in host.facts.NTP %}
+ntp server {{ ntp["server"] }}
+{% endfor %}
+{% endif %}

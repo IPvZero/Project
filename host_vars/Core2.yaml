@@ -2,5 +2,15 @@ VLANS:
   - id: 5
     name: "FIVE"
 
+<<<<<<< HEAD
   - id: 54
     name: "RED"
+=======
+  - id: 922
+    name: "NINETWOTWO"
+
+NTP:
+  - server: 1.1.1.1
+
+  - server: 2.2.2.2
+>>>>>>> main

@@ -31,7 +31,7 @@ def replace_ospf(task):
     """
     data = task.run(
         task=load_yaml,
-        file=f"./host_vars/{task.host}.yaml",
+        file=f"host_vars/{task.host}.yaml",
         severity_level=logging.DEBUG,
     )
     task.host["facts"] = data.result
@@ -58,7 +58,7 @@ def replace_vlan(task):
     """
     data = task.run(
         task=load_yaml,
-        file=f"./host_vars/{task.host}.yaml",
+        file=f"host_vars/{task.host}.yaml",
         severity_level=logging.DEBUG,
     )
     task.host["facts"] = data.result
@@ -89,7 +89,7 @@ def replace_ntp(task):
     """
     data = task.run(
         task=load_yaml,
-        file=f"./host_vars/{task.host}.yaml",
+        file=f"host_vars/{task.host}.yaml",
         severity_level=logging.DEBUG,
     )
     task.host["facts"] = data.result
