@@ -23,7 +23,7 @@ def load_vars(task):
     Load Desired State
     """
     result = task.run(
-        task=load_yaml, file=f"/home/ipvzero/Project/host_vars/{task.host}.yaml"
+        task=load_yaml, file=f"../host_vars/{task.host}.yaml"
     )
     task.host["loaded_vars"] = result.result
 
