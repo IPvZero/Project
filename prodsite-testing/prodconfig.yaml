@@ -4,9 +4,9 @@ inventory:
     plugin: SimpleInventory
     options:
     #CHANGE THESE TO ABSOLUTE PATHS
-        host_file: "prodhosts.yaml"
-        group_file: "groups.yaml"
-        defaults_file: "defaults.yaml"
+        host_file: "../prodhosts.yaml"
+        group_file: "../groups.yaml"
+        defaults_file: "../defaults.yaml"
 
 runners:
     plugin: threaded
