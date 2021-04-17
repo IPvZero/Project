@@ -3,7 +3,6 @@
 inventory:
     plugin: SimpleInventory
     options:
-        #CHANGE THESE PATHS
         host_file: "../testhosts.yaml"
         group_file: "../groups.yaml"
         defaults_file: "../defaults.yaml"
@@ -14,4 +13,4 @@ runners:
         num_workers: 10
 
 logging:
-  enabled: False
+    enabled: false

@@ -24,3 +24,5 @@ NTP:
   - server: 1.1.1.1
 
   - server: 2.2.2.2
+
+  - server: 3.3.3.3

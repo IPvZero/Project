@@ -21,6 +21,6 @@ bgp:
     redistributing: "True"
     
 NTP:
-  - server: 1.1.1.1
+  - server: 1.1.1.4
 
   - server: 2.2.2.2
