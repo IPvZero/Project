@@ -27,7 +27,7 @@ def load_vars(task):
     Load Desired State
     """
     result = task.run(
-        task=load_yaml, file=f"/home/ipvzero/Project/host_vars/{task.host}.yaml"
+        task=load_yaml, file=f"../host_vars/{task.host}.yaml"
     )
     task.host["loaded_vars"] = result.result
 
@@ -72,4 +72,5 @@ class TestNTPServers:
         ntp_servers = nr_host["ntp_data"]["vrf"]["default"]["address"]
         for server in ntp_servers:
             ntp_list.append(server)
-        assert expected_list == ntp_list, f"{nr_host} FAILED"
+        sorted_ntp_list = sorted(ntp_list)
+        assert expected_list == sorted_ntp_list, f"{nr_host} FAILED"
