@@ -12,16 +12,14 @@ cisco_group:
           port: 22
           global_delay_factor: 5
     scrapli:
-        extras:
-          port: 22
-          ssh_config_file: True
-          #transport: ssh2
-          auth_strict_key: False
-          timeout_transport: 20
+      extras:
+        port: 22
+        ssh_config_file: true
+        auth_strict_key: false
+        timeout_transport: 20
     scrapli_netconf:
-        extras:
-          port: 830
-          ssh_config_file: True
-          #transport: ssh2
-          auth_strict_key: False
-          timeout_transport: 20
+      extras:
+        port: 830
+        ssh_config_file: true
+        auth_strict_key: false
+        timeout_transport: 20
